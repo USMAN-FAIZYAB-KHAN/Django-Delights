@@ -3,6 +3,10 @@ from . import views
 
 urlpatterns = [
     path("", views.home, name="home"),
+
+    path("login/", views.CustomLoginView.as_view(), name="login"),
+    path("logout/", views.logout_view, name="logout"),
+    path("signup/", views.SignUpView.as_view(), name="signup"),
     # URL patterns for Ingredient
     path("ingredients/", views.IngredientListView.as_view(), name="ingredient_list"),
     path("ingredients/create/", views.IngredientCreateView.as_view(), name="ingredient_create"),
