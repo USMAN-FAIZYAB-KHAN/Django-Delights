@@ -1,0 +1,50 @@
+{% extends "inventory/base.html" %}
+{% block title %}
+Ingredients
+{% endblock %}
+{% block content %}
+<div class="relative shadow-md overflow-x-auto bg-white dark:bg-gray-900 px-10 pb-20">
+    <table class="w-full p-10 text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <caption class="p-5 text-lg font-semibold rounded-t-lg text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+            Ingredients
+        </caption>
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Quantity (In Stock)
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Unit Price
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ingredient in ingredients %}
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{ ingredient.name }}
+                </th>
+                <td class="px-6 py-4">
+                    {{ ingredient.quantity }} {{ ingredient.unit }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ ingredient.unit_price }} $
+                </td>
+                <td class="flex items-center px-6 py-4">
+                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    <a href="{% url 'ingredient_delete' ingredient.id %}" class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}

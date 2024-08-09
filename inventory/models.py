@@ -26,7 +26,7 @@ class RecipeRequirement(models.Model):
     quantity = models.FloatField(default=0.0)
 
     def __str__(self):
-        return f"{self.menu_item.title} - {self.ingredient.name} - {self.quantity} {self.ingredient.unit}"
+        return self.ingredient.name
     
     class Meta:
         unique_together = ('menu_item', 'ingredient')
