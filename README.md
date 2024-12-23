@@ -30,6 +30,15 @@ Visit `http://127.0.0.1:8000/` to explore the application.
        
 ---
 
+## 🗝️ Admin Credentials
+
+To log in and test the application, use the following credentials:
+
+- **Username:** admin  
+- **Password:** P@ssword123
+  
+---
+
 ## 🗄️ Screenshots
 
 ![Home Page](./Screenshots/home.png)
@@ -43,7 +52,6 @@ Visit `http://127.0.0.1:8000/` to explore the application.
 ![Purchases Page](./Screenshots/purchases.png)
 
 ---
-
 
 
 
