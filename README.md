@@ -2,10 +2,14 @@
 
 ## 🗄️ Screenshots
 
-![](./Screenshots/first-screen.png)
+![Home Page](./Screenshots/home.png)
 
-![Main Screen](./Screenshots/main-screen.png)
+![Ingredients Page](./Screenshots/ingredients.png)
 
-![Main Screen](./Screenshots/cache-filled.png)
+![Menu Items Page](./Screenshots/menuitems.png)
+
+![Menu Item Detail Page](./Screenshots/menuitem_detail.png)
+
+![Purchases Page](./Screenshots/purchases.png)
 
 ---
