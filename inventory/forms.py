@@ -47,13 +47,12 @@ class MenuItemForm(forms.ModelForm):
 class RecipeRequirementForm(forms.ModelForm):
     class Meta:
         model = RecipeRequirement
-        fields = '__all__'
+        fields = ['ingredient', 'quantity']
 
     def __init__(self, *args, **kwargs):
         super(RecipeRequirementForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white'
-
 
 class PurchaseForm(forms.ModelForm):
     class Meta:

@@ -42,24 +42,46 @@
                     class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                     <li>
                         <a href="{% url 'home' %}"
-                            class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
-                            aria-current="page">Home</a>
+                            class="block py-2 px-3 rounded 
+            {% if request.resolver_match.url_name == 'home' %}text-white bg-blue-700 md:bg-transparent md:text-blue-700 dark:text-white md:dark:text-blue-500{% else %}text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white{% endif %}">
+                            Home
+                        </a>
                     </li>
                     <li>
                         <a href="{% url 'ingredient_list' %}"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Ingredients</a>
+                            class="block py-2 px-3 rounded 
+            {% if request.resolver_match.url_name == 'ingredient_list' %}text-white bg-blue-700 md:bg-transparent md:text-blue-700 dark:text-white md:dark:text-blue-500{% else %}text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white{% endif %}">
+                            Ingredients
+                        </a>
                     </li>
                     <li>
                         <a href="{% url 'menuitem_list' %}"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Menu-Items</a>
+                            class="block py-2 px-3 rounded 
+            {% if request.resolver_match.url_name == 'menuitem_list' %}text-white bg-blue-700 md:bg-transparent md:text-blue-700 dark:text-white md:dark:text-blue-500{% else %}text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white{% endif %}">
+                            Menu-Items
+                        </a>
                     </li>
                     <li>
                         <a href="{% url 'purchase_list' %}"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Purchases</a>
+                            class="block py-2 px-3 rounded 
+            {% if request.resolver_match.url_name == 'purchase_list' %}text-white bg-blue-700 md:bg-transparent md:text-blue-700 dark:text-white md:dark:text-blue-500{% else %}text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white{% endif %}">
+                            Purchases
+                        </a>
                     </li>
+
+                    {% if user.is_staff %}
+                    <li>
+                        <a href="/admin/"
+                            class="block py-2 px-3 rounded text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white">
+                            Admin Page
+                        </a>
+                    </li>
+                    {% endif %}
+
                     <li>
                         <a href="{% url 'logout' %}">
-                            <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Logout</button>
+                            <button type="button"
+                                class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Logout</button>
                         </a>
                     </li>
                 </ul>
@@ -73,7 +95,8 @@
                 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
                 Recipe for Success: Simplify Your Restaurant Operations</h1>
             <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">
-                Accurately track inventory, automate purchasing, and focus on what matters most - serving delicious food.</p>
+                Accurately track inventory, automate purchasing, and focus on what matters most - serving delicious
+                food.</p>
             <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
                 <a href="{% url 'ingredient_list' %}"
                     class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
@@ -86,7 +109,7 @@
                 </a>
             </div>
         </div>
-    </section>    
+    </section>
 
     {% block content %}{% endblock %}
     <footer class="bg-white shadow dark:bg-gray-900">
@@ -101,16 +124,16 @@
                 <ul
                     class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
                     <li>
-                        <a href="#" class="hover:underline me-4 md:me-6">Home</a>
+                        <a href="{% url 'home' %}" class="hover:underline me-4 md:me-6">Home</a>
                     </li>
                     <li>
-                        <a href="#" class="hover:underline me-4 md:me-6">Ingredients</a>
+                        <a href="{% url 'ingredient_list' %}" class="hover:underline me-4 md:me-6">Ingredients</a>
                     </li>
                     <li>
-                        <a href="#" class="hover:underline me-4 md:me-6">Menu-Items</a>
+                        <a href="{% url 'menuitem_list' %}" class="hover:underline me-4 md:me-6">Menu-Items</a>
                     </li>
                     <li>
-                        <a href="#" class="hover:underline">Purchases</a>
+                        <a href="{% url 'purchase_list' %}" class="hover:underline">Purchases</a>
                     </li>
                 </ul>
             </div>

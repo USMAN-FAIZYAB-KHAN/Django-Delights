@@ -118,8 +118,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-LOGIN_REDIRECT_URL = '/inventory/'
-LOGIN_URL = '/inventory/login'
+LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL = '/login'
 LOGOUT_REDIRECT_URL = 'home'
 
 # Default primary key field type

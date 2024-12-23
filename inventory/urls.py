@@ -19,9 +19,9 @@ urlpatterns = [
     path("menuitems/delete/<int:pk>/", views.MenuItemDeleteView.as_view(), name="menuitem_delete"),
     path("menuitems/<int:pk>/", views.MenuItemDetailView.as_view(), name="menuitem_detail"),
     # URL patterns for RecipeRequirement
-    path("reciperequirements/create/", views.RecipeRequirementCreateView.as_view(), name="reciperequirement_create"),
-    path("reciperequirements/update/<int:pk>/", views.RecipeRequirementUpdateView.as_view(), name="reciperequirement_update"),
-    path("reciperequirements/delete/<int:pk>/", views.RecipeRequirementDeleteView.as_view(), name="reciperequirement_delete"),
+    path("reciperequirements/create/<int:menu_id>/", views.RecipeRequirementCreateView.as_view(), name="reciperequirement_create"),
+    path("reciperequirements/update/<int:menu_id>/<int:pk>/", views.RecipeRequirementUpdateView.as_view(), name="reciperequirement_update"),
+    path("reciperequirements/delete/<int:menu_id>/<int:pk>/", views.RecipeRequirementDeleteView.as_view(), name="reciperequirement_delete"),
     # URL patterns for Purchase
     path("purchases/", views.PurchaseListView.as_view(), name="purchase_list"),
     path("purchases/create/", views.PurchaseCreateView.as_view(), name="purchase_create"),

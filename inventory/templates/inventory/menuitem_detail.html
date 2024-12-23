@@ -4,38 +4,27 @@
 {% endblock %}
 {% block content %}
 <div class="relative shadow-md overflow-x-auto bg-white dark:bg-gray-900 px-10 pb-20">
-
-
-
     <div
-        class="w-full max-w-md my-10 p-8 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <div class="flex items-center justify-between mb-4">
+        class="w-full max-w-md my-4 p-8 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="flex items-center justify-between mb-6">
             <h5 class="text-2xl font-extrabold leading-none text-gray-900 dark:text-white">{{ object.title }}</h5>
         </div>
-        <div class="flow-root">
-            <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-                <li class="py-3 sm:py-4">
-                    <div class="flex items-center">
-                        <div class="flex-1 min-w-0 ms-4">
-                            <h5 class="text-lg font-bold leading-none text-blue-400 dark:text-blue-400">Price</h5>
-                        </div>
-                        <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                            {{ object.price }} $
-                        </div>
-                    </div>
-                </li>
-                <li class="py-3">
-                    <div class="flex items-center ">
-                        <div class="flex-1 min-w-0 ms-4">
-                            <h5 class="text-lg font-bold leading-none text-blue-400 dark:text-blue-400">Items Sold</h5>
-                        </div>
-                        <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                            {{ items_sold }}
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
+        <div class="flex justify-between w-full">
+            <!-- Price Section -->
+            <div class="p-4 shadow-sm shadow-blue-400 rounded-lg flex-1 mx-2">
+                <h5 class="text-lg font-bold leading-none text-blue-500 dark:text-blue-400">Price</h5>
+                <div class="mt-2 text-xl font-semibold text-gray-900 dark:text-white">
+                    {{ object.price }} $
+                </div>
+            </div>
+            <!-- Items Sold Section -->
+            <div class="p-4 shadow-sm shadow-blue-400 rounded-lg flex-1 mx-2">
+                <h5 class="text-lg font-bold leading-none text-blue-500 dark:text-blue-400">Items Sold</h5>
+                <div class="mt-2 text-xl font-semibold text-gray-900 dark:text-white">
+                    {{ items_sold }}
+                </div>
+            </div>
+        </div>        
     </div>
 
 
@@ -43,7 +32,7 @@
         <caption
             class="p-5 text-lg font-semibold rounded-t-lg text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
             Ingredients
-            <a href="{% url 'reciperequirement_create' %}"
+            <a href="{% url 'reciperequirement_create' object.id %}"
                 class="inline-flex items-center justify-center ml-6 px-4 py-2 text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm">
                 Add New
             </a>
@@ -71,9 +60,9 @@
                     {{ req.quantity }} {{ req.ingredient.unit }}
                 </td>
                 <td class="flex items-center px-6 py-4">
-                    <a href="{% url 'reciperequirement_update' req.id %}"
+                    <a href="{% url 'reciperequirement_update' object.id req.id %}"
                         class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                    <a href="{% url 'reciperequirement_delete' req.id %}"
+                    <a href="{% url 'reciperequirement_delete' object.id req.id %}"
                         class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3">Remove</a>
                 </td>
             </tr>

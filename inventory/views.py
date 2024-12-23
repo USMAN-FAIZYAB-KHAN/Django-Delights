@@ -2,7 +2,7 @@ from django.db import transaction
 from typing import Any
 from django.shortcuts import render
 from django.db.models import Sum
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -14,7 +14,7 @@ from .models import Ingredient, MenuItem, RecipeRequirement, Purchase
 from .forms import IngredientForm, MenuItemForm, RecipeRequirementForm, PurchaseForm, CustomUserCreationForm, CustomAuthenticationForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import logout
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 
 def logout_view(request):
     logout(request)
@@ -47,7 +47,7 @@ class IngredientCreateView(LoginRequiredMixin, CreateView):
     model = Ingredient
     template_name = 'inventory/create_form.html'
     form_class = IngredientForm
-    success_url = '/inventory/ingredients/'
+    success_url = '/ingredients/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -58,7 +58,7 @@ class IngredientUpdateView(LoginRequiredMixin, UpdateView):
     model = Ingredient
     template_name = 'inventory/update_form.html'
     form_class = IngredientForm
-    success_url = '/inventory/ingredients/'
+    success_url = '/ingredients/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -68,7 +68,7 @@ class IngredientUpdateView(LoginRequiredMixin, UpdateView):
 class IngredientDeleteView(LoginRequiredMixin, DeleteView):
     model = Ingredient
     template_name = 'inventory/confirm_delete.html'
-    success_url = '/inventory/ingredients/'
+    success_url = '/ingredients/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -84,17 +84,18 @@ class MenuItemCreateView(LoginRequiredMixin, CreateView):
     model = MenuItem
     template_name = 'inventory/create_form.html'
     form_class = MenuItemForm
-    success_url = '/inventory/menuitems/'
+    success_url = '/menuitems/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Create Menu Item'
+        return context
 
 class MenuItemUpdateView(LoginRequiredMixin, UpdateView):
     model = MenuItem
     template_name = 'inventory/update_form.html'
     form_class = MenuItemForm
-    success_url = '/inventory/menuitems/'
+    success_url = '/menuitems/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -104,7 +105,7 @@ class MenuItemUpdateView(LoginRequiredMixin, UpdateView):
 class MenuItemDeleteView(LoginRequiredMixin, DeleteView):
     model = MenuItem
     template_name = 'inventory/confirm_delete.html'
-    success_url = '/inventory/menuitems/'
+    success_url = '/menuitems/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -125,35 +126,53 @@ class RecipeRequirementCreateView(LoginRequiredMixin, CreateView):
     model = RecipeRequirement
     template_name = 'inventory/create_form.html'
     form_class = RecipeRequirementForm
-    success_url = '/inventory/reciperequirements/'
+
+    def form_valid(self, form):
+        menu_item_id = self.kwargs.get('menu_id') 
+        menu_item = get_object_or_404(MenuItem, pk=menu_item_id)
+        form.instance.menu_item = menu_item
+
+        if RecipeRequirement.objects.filter(menu_item=menu_item, ingredient=form.cleaned_data['ingredient']).exists():
+            form.add_error(None, 'Ingredient already exists in the recipe')
+            return super().form_invalid(form)
+
+        response = super().form_valid(form)
+        return response
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Create Recipe Requirement'
         return context
-
+    
+    def get_success_url(self):
+        return reverse('menuitem_detail', kwargs={'pk': self.kwargs.get('menu_id')})
+    
 class RecipeRequirementUpdateView(LoginRequiredMixin, UpdateView):
     model = RecipeRequirement
     template_name = 'inventory/update_form.html'
     form_class = RecipeRequirementForm
-    success_url = '/inventory/reciperequirements/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Update Recipe Requirement'
+        context['menu_id'] = self.kwargs.get('menu_id')
         return context
+    
+    def get_success_url(self):
+        return reverse('menuitem_detail', kwargs={'pk': self.kwargs.get('menu_id')})
 
 class RecipeRequirementDeleteView(LoginRequiredMixin, DeleteView):
     model = RecipeRequirement
     template_name = 'inventory/confirm_delete.html'
-    success_url = '/inventory/reciperequirements/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['menu_id'] = self.object.menu_item.id
+        context['menu_id'] = self.kwargs.get('menu_id')
         context['cancel_url_name'] = 'menuitem_detail'
-        print(context)
         return context
+
+    def get_success_url(self):
+        return reverse('menuitem_detail', kwargs={'pk': self.kwargs.get('menu_id')})
 
 class PurchaseListView(LoginRequiredMixin, ListView):
     model = Purchase
@@ -164,7 +183,7 @@ class PurchaseCreateView(LoginRequiredMixin, CreateView):
     model = Purchase
     template_name = 'inventory/create_form.html'
     form_class = PurchaseForm
-    success_url = '/inventory/purchases/'
+    success_url = '/purchases/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -205,7 +224,7 @@ class PurchaseUpdateView(LoginRequiredMixin, UpdateView):
     model = Purchase
     template_name = 'inventory/update_form.html'
     form_class = PurchaseForm
-    success_url = '/inventory/purchases/'
+    success_url = '/purchases/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -215,7 +234,7 @@ class PurchaseUpdateView(LoginRequiredMixin, UpdateView):
 class PurchaseDeleteView(LoginRequiredMixin, DeleteView):
     model = Purchase
     template_name = 'inventory/confirm_delete.html'
-    success_url = '/inventory/purchases/'
+    success_url = '/purchases/'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
