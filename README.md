@@ -5,12 +5,12 @@ Welcome to the **Django Delights** project! This application is a robust invento
 ---
 
 ## 🖋️ Table of Contents
-1. [Overview](#-overview)
-2. [Features](#-features)
-3. [Screenshots](#-screenshots)
-4. [Installation](#-installation)
-5. [Dependencies](#-dependencies)
-6. [Admin Credentials](#-admin-credentials)
+1. [Overview](#📜-overview)
+2. [Features](#✨-features)
+3. [Screenshots](#🗄️-screenshots)
+4. [Installation](#🚀-installation)
+5. [Dependencies](#📦-dependencies)
+6. [Admin Credentials](#🗝️-admin-credentials)
 
 ---
 
@@ -106,7 +106,7 @@ pip install -r requirements.txt
 
 ---
 
-## 🗝️ Admin Credentials
+##  🗝️ Admin Credentials
 
 To log in and test the application, use the following credentials:
 
