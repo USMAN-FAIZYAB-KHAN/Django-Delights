@@ -1,16 +1,20 @@
+To correct the emojis causing issues in the headings, ensure they are properly rendered in your markdown. Sometimes, replacing emojis with their Unicode equivalents resolves the issue. Here's your document with updated and corrected emojis:
+
+---
+
 ![Banner](./Screenshots/banner.png)
 
 Welcome to the **Django Delights** project! This application is a robust inventory management system tailored for restaurants or food-related businesses. Built using Django and powered by **Class-Based Views (CBVs)**, it offers an intuitive interface and efficient CRUD operations for seamless management.
 
 ---
 
-## 🖋️ Table of Contents
-1. [Overview](#📜-overview)
-2. [Features](#✨-features)
-3. [Screenshots](#🗄️-screenshots)
-4. [Installation](#🚀-installation)
-5. [Dependencies](#📦-dependencies)
-6. [Admin Credentials](#🗝️-admin-credentials)
+## 🖋 Table of Contents
+1. [Overview](#-overview)
+2. [Features](#-features)
+3. [Screenshots](#-screenshots)
+4. [Installation](#-installation)
+5. [Dependencies](#-dependencies)
+6. [Admin Credentials](#-admin-credentials)
 
 ---
 
@@ -41,7 +45,7 @@ Built on Django's **Class-Based Views (CBVs)**, this application delivers clean 
   - Cleaner, reusable view logic for all CRUD operations.
   - Enhanced maintainability and efficiency.
 
-- **Dynamic Templates** 🖌️:
+- **Dynamic Templates** 🖌:
   - Responsive templates for an intuitive user experience.
   - Custom styling using Bootstrap for modern design aesthetics.
 
@@ -50,7 +54,7 @@ Built on Django's **Class-Based Views (CBVs)**, this application delivers clean 
 
 ---
 
-## 🗄️ Screenshots
+## 🗄 Screenshots
 
 ![Home Page](./Screenshots/home.png)
 
@@ -106,7 +110,7 @@ pip install -r requirements.txt
 
 ---
 
-##  🗝️ Admin Credentials
+## 🗝 Admin Credentials
 
 To log in and test the application, use the following credentials:
 
@@ -116,4 +120,3 @@ To log in and test the application, use the following credentials:
 ---
 
 Enjoy using Django Delights! Feel free to contribute or provide feedback. 😊
-
