@@ -43,7 +43,6 @@ Built on Django's **Class-Based Views (CBVs)**, this application delivers clean 
 
 - **Dynamic Templates** 🖌:
   - Responsive templates for an intuitive user experience.
-  - Custom styling using Bootstrap for modern design aesthetics.
 
 - **Real-Time Data Tracking** 📊:
   - Track purchase costs and inventory levels instantly.
