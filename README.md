@@ -21,7 +21,7 @@ Django Delights is a comprehensive inventory management system designed to cater
 - **User Authentication**: Secure and seamless login and sign-up system.
 - **Dynamic CRUD Operations**: Easily manage ingredients, menu items, and purchases.
 - **Inventory Tracking**: Real-time updates and tracking of stock levels and purchase costs.
-- **Elegant UI**: Responsive and user-friendly interface designed with Django templates.
+- **Ingredient-to-Menu Mapping**: Define the required ingredients and their quantities for each menu item.
 
 Built on Django's **Class-Based Views (CBVs)**, this application delivers clean and modular code, ensuring maintainability and scalability.
 
@@ -40,9 +40,10 @@ Built on Django's **Class-Based Views (CBVs)**, this application delivers clean 
 - **Class-Based Views (CBVs)** ⚡:
   - Cleaner, reusable view logic for all CRUD operations.
   - Enhanced maintainability and efficiency.
-
-- **Dynamic Templates** 🖌:
-  - Responsive templates for an intuitive user experience.
+ 
+- **Ingredient-to-Menu Mapping** 🧾:
+  - Specify the ingredients required for each menu item.
+  - Track quantities of ingredients for accurate inventory management.
 
 - **Real-Time Data Tracking** 📊:
   - Track purchase costs and inventory levels instantly.
@@ -96,7 +97,6 @@ Built on Django's **Class-Based Views (CBVs)**, this application delivers clean 
 The following Python libraries are required to run this project:
 
 - **Django**: Backend framework for building the application.
-- **SQLite**: Default database for Django projects.
 
 Install all dependencies with:
 ```bash
