@@ -1,7 +1,3 @@
-To correct the emojis causing issues in the headings, ensure they are properly rendered in your markdown. Sometimes, replacing emojis with their Unicode equivalents resolves the issue. Here's your document with updated and corrected emojis:
-
----
-
 ![Banner](./Screenshots/banner.png)
 
 Welcome to the **Django Delights** project! This application is a robust inventory management system tailored for restaurants or food-related businesses. Built using Django and powered by **Class-Based Views (CBVs)**, it offers an intuitive interface and efficient CRUD operations for seamless management.
